@@ -1,13 +1,13 @@
 let humanScore = 0;
-let computerScore = 0;
+// let's make a variable for computer score here
 
 const $status = $('#status');
 const $humanScore = $('#humanScore');
-const $computerScore = $('#computerScore');
+// let's save a variable $computerScore to store a reference to the element with an ID of computerScore
 
 $('#slug').on('click', playSlug);
 $('#frog').on('click', playFrog);
-$('#snake').on('click', playSnake);
+// Let's attach a click handler to the snake element
 
 function playSlug() {
   play('slug');
@@ -15,9 +15,7 @@ function playSlug() {
 function playFrog() {
   play('frog');
 }
-function playSnake() {
-  play('snake');
-}
+// let's make a function called playSnake to go along with the click handler we just attached to the snake button
 
 function play(humanPlay) {
   var computerPlay = getComputerPlay();
@@ -47,17 +45,11 @@ function play(humanPlay) {
       computerScore++;
     }
   } else if (humanPlay == 'snake') {
-    if (computerPlay == 'slug') {
-      $status.append('<p>You lose.</p>');
-      computerScore++;
-    } else if (computerPlay == 'frog') {
-      $status.append('<p>You win!</p>');
-      humanScore++;
-    }
+    // let's write the code for if a user plays snake here!!
   }
 
   $humanScore.html(humanScore);
-  $computerScore.html(computerScore);
+  // let's set the computer score element's html equal to the computerScore
 }
 
 function getComputerPlay() {
