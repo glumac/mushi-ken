@@ -1,5 +1,9 @@
-var humanScore = 0;
-var computerScore = 0;
+let humanScore = 0;
+let computerScore = 0;
+
+const statusElem = document.getElementById('status');
+const humanScoreElem = document.getElementById('humanScore');
+const computerScoreElem = document.getElementById('computerScore');
 
 document.getElementById('slug').onclick = playSlug;
 document.getElementById('frog').onclick = playFrog;
@@ -23,42 +27,41 @@ function play(humanPlay) {
   ).innerHTML = `<p>You played <strong>${humanPlay}</strong>. The bot played <strong>${computerPlay}</strong>.</p>`;
 
   if (humanPlay == computerPlay) {
-    return (document.getElementById('status').innerHTML +=
-      '<p>You tied. :|</p>');
+    return (status.innerHTML += '<p>You tied. :|</p>');
   }
 
   if (humanPlay == 'slug') {
     if (computerPlay == 'frog') {
-      document.getElementById('status').innerHTML += '<p>You lose. :(</p>';
+      statusElem.innerHTML += '<p>You lose. :(</p>';
       computerScore++;
     } else if (computerPlay == 'snake') {
-      document.getElementById('status').innerHTML += '<p>You win! :)</p>';
+      statusElem.innerHTML += '<p>You win! :)</p>';
       humanScore++;
     }
   } else if (humanPlay == 'frog') {
     if (computerPlay == 'slug') {
-      document.getElementById('status').innerHTML += '<p>You win! :)</p>';
+      statusElem.innerHTML += '<p>You win! :)</p>';
       humanScore++;
     } else if (computerPlay == 'snake') {
-      document.getElementById('status').innerHTML += '<p>You lose. :(</p>';
+      statusElem.innerHTML += '<p>You lose. :(</p>';
       computerScore++;
     }
   } else if (humanPlay == 'snake') {
     if (computerPlay == 'slug') {
-      document.getElementById('status').innerHTML += '<p>You lose. :(</p>';
+      statusElem.innerHTML += '<p>You lose. :(</p>';
       computerScore++;
     } else if (computerPlay == 'frog') {
-      document.getElementById('status').innerHTML += '<p>You win! :)</p>';
+      statusElem.innerHTML += '<p>You win! :)</p>';
       humanScore++;
     }
   }
 
-  document.getElementById('humanScore').innerHTML = humanScore;
-  document.getElementById('computerScore').innerHTML = computerScore;
+  humanScoreElem.innerHTML = humanScore;
+  computerScoreElem.innerHTML = computerScore;
 }
 
 function getComputerPlay() {
-  var plays = ['slug', 'frog', 'snake'];
-  var play = plays[Math.floor(Math.random() * plays.length)];
+  const plays = ['slug', 'frog', 'snake'];
+  const play = plays[Math.floor(Math.random() * plays.length)];
   return play;
 }
