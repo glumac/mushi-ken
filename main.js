@@ -1,13 +1,13 @@
 let humanScore = 0;
 let computerScore = 0;
 
-const statusElem = document.getElementById('status');
-const humanScoreElem = document.getElementById('humanScore');
-const computerScoreElem = document.getElementById('computerScore');
+const $status = $('#status');
+const $humanScore = $('#humanScore');
+const $computerScore = $('#computerScore');
 
-document.getElementById('slug').onclick = playSlug;
-document.getElementById('frog').onclick = playFrog;
-document.getElementById('snake').onclick = playSnake;
+$('#slug').on('click', playSlug);
+$('#frog').on('click', playFrog);
+$('#snake').on('click', playSnake);
 
 function playSlug() {
   play('slug');
@@ -22,42 +22,42 @@ function playSnake() {
 function play(humanPlay) {
   var computerPlay = getComputerPlay();
 
-  document.getElementById(
-    'status',
-  ).innerHTML = `<p>You played <strong>${humanPlay}</strong>. The bot played <strong>${computerPlay}</strong>.</p>`;
+  $status.html(
+    `<p>You played <strong>${humanPlay}</strong>. The bot played <strong>${computerPlay}</strong>.</p>`,
+  );
 
   if (humanPlay == computerPlay) {
-    return (status.innerHTML += '<p>You tied. :|</p>');
+    return $status.append('<p>You tied. :|</p>');
   }
 
   if (humanPlay == 'slug') {
     if (computerPlay == 'frog') {
-      statusElem.innerHTML += '<p>You lose. :(</p>';
+      $status.append('<p>You lose.</p>');
       computerScore++;
     } else if (computerPlay == 'snake') {
-      statusElem.innerHTML += '<p>You win! :)</p>';
+      $status.append('<p>You win!</p>');
       humanScore++;
     }
   } else if (humanPlay == 'frog') {
     if (computerPlay == 'slug') {
-      statusElem.innerHTML += '<p>You win! :)</p>';
+      $status.append('<p>You win!</p>');
       humanScore++;
     } else if (computerPlay == 'snake') {
-      statusElem.innerHTML += '<p>You lose. :(</p>';
+      $status.append('<p>You lose.</p>');
       computerScore++;
     }
   } else if (humanPlay == 'snake') {
     if (computerPlay == 'slug') {
-      statusElem.innerHTML += '<p>You lose. :(</p>';
+      $status.append('<p>You lose.</p>');
       computerScore++;
     } else if (computerPlay == 'frog') {
-      statusElem.innerHTML += '<p>You win! :)</p>';
+      $status.append('<p>You win!</p>');
       humanScore++;
     }
   }
 
-  humanScoreElem.innerHTML = humanScore;
-  computerScoreElem.innerHTML = computerScore;
+  $humanScore.html(humanScore);
+  $computerScore.html(computerScore);
 }
 
 function getComputerPlay() {
