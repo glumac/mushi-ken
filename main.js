@@ -5,9 +5,13 @@ const $status = $('#status');
 const $humanScore = $('#humanScore');
 const $computerScore = $('#computerScore');
 
-$('#slug').on('click', playSlug);
-$('#frog').on('click', playFrog);
-$('#snake').on('click', playSnake);
+const tieMessage = '<p>You tied. :|</p>';
+const loseMessage = '<p>You lose.</p>';
+const winMessage = '<p>You win!</p>';
+
+$('#slug').click(playSlug);
+$('#frog').click(playFrog);
+$('#snake').click(playSnake);
 
 function playSlug() {
   play('slug');
@@ -27,23 +31,21 @@ function play(humanPlay) {
   );
 
   if (humanPlay == computerPlay) {
-    return $status.append('<p>You tied. :|</p>');
-  }
-
-  if (humanPlay == 'slug') {
+    return $status.append(tieMessage);
+  } else if (humanPlay == 'slug') {
     if (computerPlay == 'frog') {
-      $status.append('<p>You lose.</p>');
+      $status.append(loseMessage);
       computerScore++;
     } else if (computerPlay == 'snake') {
-      $status.append('<p>You win!</p>');
+      $status.append(winMessage);
       humanScore++;
     }
   } else if (humanPlay == 'frog') {
     if (computerPlay == 'slug') {
-      $status.append('<p>You win!</p>');
+      $status.append(winMessage);
       humanScore++;
     } else if (computerPlay == 'snake') {
-      $status.append('<p>You lose.</p>');
+      $status.append(loseMessage);
       computerScore++;
     }
   } else if (humanPlay == 'snake') {
@@ -51,7 +53,7 @@ function play(humanPlay) {
       $status.append('<p>You lose.</p>');
       computerScore++;
     } else if (computerPlay == 'frog') {
-      $status.append('<p>You win!</p>');
+      $status.append(winMessage);
       humanScore++;
     }
   }
